@@ -1,0 +1,349 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Template for AIMS Rwanda Assignments         %%%              %%%
+%%% Author:   AIMS Rwanda tutors                             %%%   ###        %%%
+%%% Email: tutors2017-18@aims.ac.rw                               %%%   ###        %%%
+%%% Copyright: This template was designed to be used for    %%% #######      %%%
+%%% the assignments at AIMS Rwanda during the academic year %%%   ###        %%%
+%%% 2017-2018.                                              %%%   #########  %%%
+%%% You are free to alter any part of this document for     %%%   ###   ###  %%%
+%%% yourself and for distribution.                          %%%   ###   ###  %%%
+%%%                                                         %%%              %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%% Ensure that you do not write the questions before each of the solutions because it is not necessary. %%%%%% 
+
+\documentclass[12pt,a4paper]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% packages %%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage[all]{xy}
+\usepackage{tikz}
+\usepackage{placeins}
+\usepackage{actuarialsymbol}
+\usepackage{actuarialangle}
+\usepackage{float}
+\usepackage{verbatim}
+\usepackage[left=2cm,right=2cm,top=3cm,bottom=2.5cm]{geometry}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{psfrag}
+
+%%%%%%%%%%%%%%%%%%%%% students data %%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\student}{Stephen Kiilu}
+\newcommand{\course}{Financial Mathematics}
+\newcommand{\assignment}{FM1}
+
+%%%%%%%%%%%%%%%%%%% using theorem style %%%%%%%%%%%%%%%%%%%%
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{exa}[thm]{Example}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{coro}[thm]{Corollary}
+\newtheorem{quest}{Question}[section]
+
+%%%%%%%%%%%%%%  Shortcut for usual set of numbers  %%%%%%%%%%%
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%555
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%% title page %%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{empty}
+\begin{center}
+\textbf{AFRICAN INSTITUTE FOR MATHEMATICAL SCIENCES \\[0.5cm]
+(AIMS RWANDA, KIGALI)}
+\vspace{1.0cm}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%% assignment information %%%%%%%%%%%%%%%%
+\noindent
+\rule{17cm}{0.2cm}\\[0.3cm]
+Name: \student \hfill Assignment Number: \assignment\\[0.1cm]
+Course: \course \hfill Date: \today\\
+\rule{17cm}{0.05cm}
+\vspace{1.0cm}
+
+
+\section*{Question 1}
+
+In this exercise we are given force of interest per annum earned on bank deposits in a certain year. The woman deposits $\pounds$ 10,000 and makes withdrawals of $\pounds$ 1,000 at end of each quarter.
+\begin{enumerate}
+\item[(a)]
+Calculate the closing balance of the woman's account.\\
+We use accumulation function and force of interest at different proportions of the year to determine the woman's closing account. The figure \ref{fig 1} below shows the deposit and withdrawals made at each quarter.
+\begin{figure}[H]
+\includegraphics[width=12cm]{2}
+\centering
+\caption{accumulation of bank deposits}
+\label{fig 1}
+\end{figure}
+\begin{eqnarray*}
+u\left(0,\frac{1}{4} \right)&=& e^{\int_0 ^{\frac{1}{4}}(0.05+0.04t)dt}=1.0138\\
+u\left(\frac{1}{4},\frac{1}{2} \right)&=& e^{\int_{\frac{1}{4}} ^{\frac{1}{2}}(0.05+0.04t)dt}=1.01638\\
+u\left(\frac{1}{2},\frac{3}{4} \right)&=& e^{\int_{\frac{1}{2}} ^{\frac{3}{4}}(0.07-0.04(t-0.5)^2 )dt}=1.0174\\
+u\left(\frac{3}{4},1 \right)&=& e^{\int_{\frac{3}{4}} ^1 (0.07-0.04(t-0.5)^2 )dt}=1.01617\\
+\end{eqnarray*}
+The amount accumulated after the first quarter is given by;
+\begin{eqnarray*}
+&=&10,000 \,u\left(0,\frac{1}{4} \right)-1000\\
+&=&10,000 \times 1.0138-1000\\
+&=& \pounds 9,138.
+\end{eqnarray*}
+The amount accumulated after the second quarter;
+\begin{eqnarray*}
+&=& 9138 \,u\left(\frac{1}{4},\frac{1}{2} \right)-1000\\
+&=&9,138 \times 1.01638-1000\\
+&=& \pounds 8,287.6804.
+\end{eqnarray*}
+
+The amount accumulated after the third quarter;
+\begin{eqnarray*}
+&=&8287.6804\, u\left(\frac{1}{2},\frac{3}{4} \right)-1000\\
+&=& 8287.6804\times 1.0174-1000\\
+&=& \pounds 7,431.88608.
+\end{eqnarray*}
+The closing balance at the end of the year;
+\begin{eqnarray*}
+&=& 7431.88608\, u\left(\frac{3}{4},1 \right)-1000\\
+&=& 7431.88608\times 1.01617-1000\\
+&=& \pounds 7,552.06
+\end{eqnarray*}
+\item[(b)]
+Find the nominal rate of interest per annum
+\begin{eqnarray*}
+i_h(t)&=&\frac{u(t,t+h)-1}{h}\\
+h&=&\frac{1}{2}, \,
+t=\frac{1}{2}\\
+i_h(t)&=& \frac{u(1/2,1)-1}{1/2}\\
+&=& \frac{e^{\int_{\frac{1}{2}} ^{1}(0.07-0.04(t-0.5)^2 )dt}-1}{1/2}\\
+&=& 0.06778\\
+&=& 6.78 \%
+\end{eqnarray*}
+\end{enumerate}
+
+\section*{Question 2}
+\begin{enumerate}
+\item[(a)] We are required to show that;
+\begin{eqnarray*}
+a_{\angl{n}}& =&\frac{1-v^n}{i}\\
+\text{and we know that;}\\
+u& =&i+1\\
+v&=&i-d\\
+uv&=&1\\
+a_{\angl{n}}& =&v\left(\frac{1-v^n}{1-v}\right)\\
+a_{\angl{n}}& =&\frac{1}{1+i}\left(  \frac{1-v^n}{1-\frac{1}{1+i}}\right)\\
+&=&\frac{1}{1+i} \left(   \frac{1-v^n}{1} 1+i\right)\\
+\text{ and therefore we have}\\
+a_{\angl{n}}& =&\frac{1-v^n}{i}\\
+\text{As required.}
+\end{eqnarray*}
+
+We need to show that;
+\begin{eqnarray*}
+s_{\angl{n}}& =&(1+i)^n a_{\angl{n}}\\
+s_{\angl{n}}&=& \left( \frac{\frac{1}{v^n}-1}{u-1}\right)\\
+&=&\left( \frac{\frac{1-v^n}{v^n}}{u-1}\right)\\
+&=&\left( \frac{1-v^n}{v^n}.\frac{1}{u-1}\right)\\
+&=& \frac{1-v^n}{v^n}.\frac{1}{i}\\
+&=& \frac{1-v^n}{i}.\frac{1}{v^n}\\
+&=& \frac{1-v^n}{i}. u^n\\
+\text{ but } \, u=1+i\\
+&=& (1+i)^n a_{\angl{n}}\\
+\text{and therefore}\\
+s_{\angl{n}}& =&(1+i)^n a_{\angl{n}}\\
+\text{as required.}
+\end{eqnarray*}
+We want show that;
+\begin{eqnarray*}
+\frac{1}{a_{\angl{n}}}-\frac{1}{s_{\angl{n}}} &=& i\\
+a_{\angl{n}}-s_{\angl{n}} &=& \frac{i}{v^n}-\frac{1}{(1+i)^n}.\frac{i}{1-v^n}\\
+ &=&\frac{i}{1-v^n}- \frac{i}{u^n(1-v^n)}\\
+ &=& \frac{i(u^n-1}{u^n-(uv)^n}\\
+  &=&\frac{i(u^n-1)}{u^n-1}\\
+   &=& i\\
+   \text{and therefore}\\
+\frac{1}{a_{\angl{n}}}-\frac{1}{s_{\angl{n}}} &=& i\\
+   \text{as required.}
+\end{eqnarray*}
+\item[(b)]
+We required to find i and n given that,
+\begin{eqnarray*}
+s_{\angl{n}}=14.2068 \,\, ,a_{\angl{n}}=8.3064\\
+\frac{1}{a_{\angl{n}}}-\frac{1}{s_{\angl{n}}} &=& i\\
+&=&\frac{1}{8.3064}-\frac{1}{14.2068}\\
+&=& 0.05\\
+&=& 5\%
+\end{eqnarray*}
+We now calculate the value of n;
+\begin{eqnarray*}
+\frac{s_{\angl{n}}}{a_{\angl{n}}}&=& (i+1)^n\\
+n&=&\frac{\ln \left( \frac{s_{\angl{n}}}{a_{\angl{n}}} \right)}{\ln (i+1)}\\
+n&=&\frac{\ln \left( \frac{14.2068}{8.3064}\right)}{ \ln (1.05)}\\
+n&=& 11.
+\end{eqnarray*}
+\end{enumerate}
+\section*{Question 3}
+We need to get an expression for present value of loan.\\
+Loan is $ \pounds 5000$ , let the initial amount paid be x, and the loan is payable in 15 years.
+The figure \ref{fig 3} below shows the annuity paid each year for period of 15 years.
+\begin{figure}[H]
+\includegraphics[width=14cm]{3}
+\centering
+\caption{annuties for 15 years}
+\label{fig 3}
+\end{figure}
+\begin{enumerate}
+\item[(a)]
+Payment of x amount for the 15 years.
+\begin{eqnarray*}
+xv^1+xv^2+\cdots +xv^{15}&=&x a_{\angl{15}}
+\end{eqnarray*}
+Payment of \pounds 100 for the 10 years.
+\begin{eqnarray*}
+100v^6+100v^7+\cdots +100 v^{15}&=&100(a_{\angl{15}}-a_{\angl{5}})
+\end{eqnarray*}
+Payment of \pounds 200, after 10 years.
+\begin{eqnarray*}
+200v^{11}+200v^{12}+\cdots + 200v^{15}&=&200(a_{\angl{15}}-a_{\angl{10}})
+\end{eqnarray*}
+Our expression becomes;
+\begin{eqnarray*}
+5000- x a_{\angl{15}}-100(a_{\angl{15}}-a_{\angl{5}})-200(a_{\angl{15}}-a_{\angl{10}})
+\end{eqnarray*}
+For us to calculate the initial amount we equate the expression above to zero and solve for x.
+\begin{eqnarray*}
+0=5000- x a_{\angl{15}}-100(a_{\angl{15}}-a_{\angl{5}})-200(a_{\angl{15}}-a_{\angl{10}})
+\end{eqnarray*}
+\begin{eqnarray*}
+a_{\angl{n}}&=&\frac{1-(1+i)^{-n}}{i}\\
+a_{\angl{15}}&=& \frac{1-(1.04)^{-15}}{0.04} = 11.1184\\
+a_{\angl{10}}&=& \frac{1-(1.04)^{-10}}{0.04} = 8.1109\\
+a_{\angl{5}}&=& \frac{1-(1.04)^{-5}}{0.04} = 4.4518\\
+0&=& 5000-11.1184x-601.5-666.66\\
+x&=&\pounds 335.65\\
+\text{which is the initial amount of the annual payment.}
+\end{eqnarray*}
+We now calculate the loan after third year
+\begin{eqnarray*}
+u&=&1+i\\
+u&=&1.04\\
+&&5000 u^3-(xu^2+xu+x)\\
+ \text{and}\, \,x&=& 335.65\\ \text{which gives loan after $3^{rd}$ year as;}\\
+&&\pounds 4576.55\\
+\text{interest paid} &=& 4/100 \times 4576.55\\
+&&\pounds 183.06\\
+\end{eqnarray*}
+\item[(c)]
+We need to calculate level payments if the loan was to be recalculated after 7 years. We first calculate the outstanding balance and the calculate the uniform payments. The figure \ref{fig 5} shows level payment of the loan after 7th year.
+\begin{figure}[H]
+\includegraphics[width=10cm]{4}
+\centering
+\caption{uniform payments}
+\label{fig 5}
+\end{figure}
+We first calculate the outstanding loan, z
+\begin{eqnarray*}
+z&=& 5000u^7-(xu^6+xu^5+xu^4+xu^3+xu^2+(x+100)u+(x+100))\\
+\end{eqnarray*}
+Replacing for the values of z and x in the above equation, we get;
+\begin{eqnarray*}
+z=6579.6589-(424.54+408.21+392.51+377.41+362.90+452.94+435.65)\\
+\end{eqnarray*}
+The outstanding balance is;
+\begin{eqnarray*}
+=\pounds 3725.49\\
+\end{eqnarray*}
+We know calculate level payments after 7th year, y
+\begin{eqnarray*}
+z&=& y.\frac{1-v^n}{i}\\
+z&=&y.\frac{1-(1+i)^n}{i}\\
+y&=&\frac{zi}{1-(1+i)^{-n}}\\
+y&=& \frac{3725.49 \times 0.04}{1-(1.04)^{-8}}\\
+&=& \pounds 553.34.
+\end{eqnarray*}
+\end{enumerate}
+\section*{Question 4}
+The figure \ref{fig 6} shows discounted payback period of a project at an interest of $7.5 \%$.
+\begin{figure}[H]
+\includegraphics[width=10cm]{5}
+\centering
+\caption{discounted payback}
+\label{fig 6}
+\end{figure}
+\begin{enumerate}
+\item[(a)]
+We need to show that the discounted payback period, t,
+of the project is given by;
+\begin{eqnarray*}
+t&=& 2-\frac{\ln \left[1-2\delta(1+i)(4+3i) \right]}{\delta}\\
+\end{eqnarray*}
+Here we use accumulation function;
+\begin{eqnarray*}
+150,000 u^2+50,000 u&=&25,000 \int _0 ^{t-2} e^{-\delta t}dt\\
+6 u^2+2 u&= &\int _0 ^{t-2} e^{-\delta t }dt\\
+\text{but} \, u=1+i\\
+6u^2+2u&=& 6(1+i)^2+2(i+1)= 2(i+1)(3(1+i)+1)\\
+&=& 2(i+1)(4+3i)\\
+\int _0 ^{t-2} e^{-\delta t}dt&=&\frac{1-e^{-\delta(t-2)}}{\delta}\\
+ 2(i+1)(4+3i)&=& \frac{1-e^{-\delta(T-2)}}{\delta}\\
+ e^{-\delta(t-2)}&=&1-2 \delta  2(i+1)(4+3i)\\
+ \text{we introduce natural log on both sides to obtain; }\\
+ -\delta(t-2)&=& \ln(1-2 \delta  2(i+1)(4+3i))\\
+ t-2 &=& -\frac{\ln \left[1-2\sigma(1+i)(4+3i) \right]}{\delta}\\
+ t&=& 2-\frac{\ln \left[1-2\sigma(1+i)(4+3i) \right]}{\delta}\\
+\end{eqnarray*}
+\newpage
+Evaluate this expression at the specified interest;
+\begin{eqnarray*}
+\text{We are given}\\
+i&=& 0.075\\
+\delta &=& \ln (1+i)= \ln (1.075)\\
+\text{We substitute this figures in ;}\\
+ t&=& 2-\frac{\ln \left[1-2\sigma(1+i)(4+3i) \right]}{\delta}\\
+ \text{to obtain t as}\\
+  t&=& 2-\frac{\ln \left[1-2\ln(1.075)(1.075)(4+3(0.075)) \right]}{\ln(1.075)}\\
+ \text{to obtain t as}\\
+ t&=& 16.79.
+\end{eqnarray*}
+ \item[(b)]
+ We want to find the accumulated amount of this
+account 25 years after purchase of the property.
+\begin{eqnarray*}
+\bar{s}_{\angl{n}}&=&\frac{u^n-1}{\delta}\\
+\text{we are given;}\\
+u= 1+i \,\, ,\,
+i&=& 0.05\,\, , \,
+n= 8\\
+\delta = \ln (u)\\
+25,000 \bar{s}_{\angl{n}}&=&25,000\left(\frac{u^n-1}{\delta}\right)\\
+25,000\left(\frac{u^8-1}{\delta}\right)&=&25,000\left(\frac{1.05^8-1}{\ln(1.05)}\right)\\
+&=& \pounds 244,647.39.
+\end{eqnarray*}
+\end{enumerate}
+\newpage
+\begin{thebibliography}{99}
+
+  \bibitem{notes} Prof. James Vickers  ,{\em Lecture notes,}  2021.\\
+%
+%  \bibitem{notes} Babatunde Abiodun {\em Lecture notes,}  2021.
+%  
+%  \bibitem{norman} Ronald Stull, { 
+%Meteorology for Scientists and Engineers, 3rd Ed.} Chapter 1, THE ATMOSPHERE: 2011, 2015 Copyright@2011
+%
+\end{thebibliography}
+
+\end{document}
